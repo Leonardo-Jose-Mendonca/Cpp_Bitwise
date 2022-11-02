@@ -3,4 +3,4 @@ Using bitwise operands
 
 libary = bitset
 operands:
-  bitset - << - >> - & - | - ~ - ^
+  bitset ,  << ,  >> , & , | , ~ , ^

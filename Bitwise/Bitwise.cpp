@@ -1,11 +1,22 @@
 #include <iostream>
 #include <bitset>
 
+void printBin(int number) {
+    int bit = 0x8000;
+    for (int i = 0; i < 16; i++) {
+        if (bit & number)
+            printf("1");
+        else
+            printf("0");
+        bit = bit >> 1;
+    }
+}
+
 int main(){
     //declaring the binary variables
     using bit  = bool;
-    using byte = unsigned char;
-    using word = unsigned short;
+    using byte = unsigned char;     // uint8_t
+    using word = unsigned short;    // uint16_t
     bit  var_bit  = 1;
     byte var_byte = 0xFF;
     word var_word = 0x0000;
@@ -19,31 +30,31 @@ int main(){
     _word bitset_word = 0x0000;
 
     //binary operations
-    std::cout << "word             " << std::bitset<16>(var_word) << std::endl;
-    std::cout << "byte             " << std::bitset<16>(var_byte) << std::endl;
+    std::cout << "word             ";   printBin(var_word);  std::cout << std::endl;
+    std::cout << "byte             ";   printBin(var_byte);  std::cout << std::endl;
     var_word = var_byte;
-    std::cout << "word <- byte     " << std::bitset<16>(var_word) << std::endl;
+    std::cout << "word <- byte     ";   printBin(var_word);  std::cout << std::endl;
     var_word = var_word << 5;
-    std::cout << "word << 5        " << std::bitset<16>(var_word) << std::endl;
+    std::cout << "word << 5        ";   printBin(var_word);  std::cout << std::endl;
     var_word = var_word >> 2;
-    std::cout << "word >> 2        " << std::bitset<16>(var_word) << std::endl;
+    std::cout << "word >> 2        ";   printBin(var_word);  std::cout << std::endl;
     var_word = var_word & 0x00FF;
-    std::cout << "AND with 0x00FF  " << std::bitset<16>(var_word) << std::endl;
+    std::cout << "AND with 0x00FF  ";   printBin(var_word);  std::cout << std::endl;
     var_word = var_word | 0xAAAA;
-    std::cout << "0xAAAA           " << std::bitset<16>(0xAAAA) << std::endl;
-    std::cout << "OR with 0xAAAA   " << std::bitset<16>(var_word) << std::endl;
+    std::cout << "0xAAAA           ";   printBin(0xAAAA);    std::cout << std::endl;
+    std::cout << "OR with 0xAAAA   ";   printBin(var_word);  std::cout << std::endl;
     var_word = ~var_word;
-    std::cout << "Inverter ~       " << std::bitset<16>(var_word) << std::endl;
+    std::cout << "Inverter ~       ";   printBin(var_word);  std::cout << std::endl;
     var_word = var_word ^ 0x0FF0;
-    std::cout << "XOR with 0x0FF0  " << std::bitset<16>(var_word) << std::endl;
+    std::cout << "XOR with 0x0FF0  ";   printBin(var_word);  std::cout << std::endl;
     std::cout << "flag 9th bit            ^        " << std::endl;
     var_bit = var_word & 0x0100;
-    std::cout << "flag 9th bit     " << std::bitset<1>(var_bit) << std::endl;
+    std::cout << "flag 9th bit     " << var_bit << std::endl;
     var_word = var_word ^ 0x0100;
-    std::cout << "flip 9th bit     " << std::bitset<16>(var_word) << std::endl;
+    std::cout << "flip 9th bit     ";   printBin(var_word);  std::cout << std::endl;
     std::cout << "flag 9th bit            ^        " << std::endl;
     var_bit = var_word & 0x0100;
-    std::cout << "flag 9th bit     " << std::bitset<1>(var_bit) << std::endl;
+    std::cout << "flag 9th bit     " << var_bit << std::endl;
 
     std::cout << "--------------------------------------------------------------------" << std::endl;
 
